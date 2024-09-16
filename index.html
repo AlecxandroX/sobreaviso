@@ -6,38 +6,74 @@
     <title>Calculadora de Sobreaviso</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-image: url(https://images.pexels.com/photos/3483098/pexels-photo-3483098.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+            font-family: 'Roboto', sans-serif;
+            background-image: url('https://images.pexels.com/photos/3483098/pexels-photo-3483098.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
             color: #f0f0f0;
-            padding: 20px;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
         .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #444;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
         }
 
-        input, button {
+        h1 {
+            color: #4caf50;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 10px;
+            color: #ddd;
+        }
+
+        input {
             width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 4px;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 5px;
             border: none;
+            background-color: #555;
+            color: #fff;
             font-size: 1rem;
         }
 
+        input::placeholder {
+            color: #ccc;
+        }
+
         button {
-            background-color: #28a745;
+            background-color: #4caf50;
             color: white;
+            padding: 12px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
         button:hover {
-            background-color: #218838;
+            background-color: #45a049;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #fff;
         }
     </style>
 </head>
@@ -48,34 +84,36 @@
         <label for="valorHora">Valor da Hora (R$):</label>
         <input type="number" id="valorHora" step="0.01" placeholder="Ex: 50.00" required>
 
-        <label for="horasSobreaviso">Total de Horas de Sobreaviso:</label>
-        <input type="number" id="horasSobreaviso" placeholder="Ex: 12" required>
+        <label for="horas
 
-        <label for="horasAcionamento">Total de Horas por Acionamento:</label>
-        <input type="number" id="horasAcionamento" placeholder="Ex: 2" required>
+<label for="horasSobreaviso">Total de Horas de Sobreaviso:</label>
+<input type="number" id="horasSobreaviso" placeholder="Ex: 12" required>
 
-        <button onclick="calcularSobreaviso()">Calcular</button>
+<label for="horasAcionamento">Total de Horas por Acionamento:</label>
+<input type="number" id="horasAcionamento" placeholder="Ex: 2" required>
 
-        <h2 id="resultado">Resultado: R$ 0.00</h2>
-    </div>
+<button onclick="calcularSobreaviso()">Calcular</button>
 
-    <script>
-        function calcularSobreaviso() {
-            const valorHora = parseFloat(document.getElementById('valorHora').value);
-            const horasSobreaviso = parseFloat(document.getElementById('horasSobreaviso').value);
-            const horasAcionamento = parseFloat(document.getElementById('horasAcionamento').value);
+<h2 id="resultado">Resultado: R$ 0.00</h2>
+</div>
 
-            if (isNaN(valorHora) || isNaN(horasSobreaviso) || isNaN(horasAcionamento)) {
-                alert("Por favor, preencha todos os campos corretamente.");
-                return;
-            }
+<script>
+function calcularSobreaviso() {
+    const valorHora = parseFloat(document.getElementById('valorHora').value);
+    const horasSobreaviso = parseFloat(document.getElementById('horasSobreaviso').value);
+    const horasAcionamento = parseFloat(document.getElementById('horasAcionamento').value);
 
-            const sobreaviso = (valorHora * horasSobreaviso) / 3;
-            const acionamento = horasAcionamento * valorHora * 1.5; // 50% a mais
-            const total = sobreaviso + acionamento;
+    if (isNaN(valorHora) || isNaN(horasSobreaviso) || isNaN(horasAcionamento)) {
+        alert("Por favor, preencha todos os campos corretamente.");
+        return;
+    }
 
-            document.getElementById('resultado').innerText = `Resultado: R$ ${total.toFixed(2)}`;
-        }
-    </script>
+    const sobreaviso = (valorHora * horasSobreaviso) / 3;
+    const acionamento = horasAcionamento * valorHora * 1.5; // 50% a mais
+    const total = sobreaviso + acionamento;
+
+    document.getElementById('resultado').innerText = `Resultado: R$ ${total.toFixed(2)}`;
+}
+</script>
 </body>
 </html>
