@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Sobreaviso</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url(https://images.pexels.com/photos/3483098/pexels-photo-3483098.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+            color: #f0f0f0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #444;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: none;
+            font-size: 1rem;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Sobreaviso</h1>
+
+        <label for="valorHora">Valor da Hora (R$):</label>
+        <input type="number" id="valorHora" step="0.01" placeholder="Ex: 50.00" required>
+
+        <label for="horasSobreaviso">Total de Horas de Sobreaviso:</label>
+        <input type="number" id="horasSobreaviso" placeholder="Ex: 12" required>
+
+        <label for="horasAcionamento">Total de Horas por Acionamento:</label>
+        <input type="number" id="horasAcionamento" placeholder="Ex: 2" required>
+
+        <button onclick="calcularSobreaviso()">Calcular</button>
+
+        <h2 id="resultado">Resultado: R$ 0.00</h2>
+    </div>
+
+    <script>
+        function calcularSobreaviso() {
+            const valorHora = parseFloat(document.getElementById('valorHora').value);
+            const horasSobreaviso = parseFloat(document.getElementById('horasSobreaviso').value);
+            const horasAcionamento = parseFloat(document.getElementById('horasAcionamento').value);
+
+            if (isNaN(valorHora) || isNaN(horasSobreaviso) || isNaN(horasAcionamento)) {
+                alert("Por favor, preencha todos os campos corretamente.");
+                return;
+            }
+
+            const sobreaviso = (valorHora * horasSobreaviso) / 3;
+            const acionamento = horasAcionamento * valorHora * 1.5; // 50% a mais
+            const total = sobreaviso + acionamento;
+
+            document.getElementById('resultado').innerText = `Resultado: R$ ${total.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
